@@ -16,7 +16,14 @@ export function renderMissions() {
         li.className =
         "flex justify-between border border-green-700 p-2";
         li.innerHTML = `
+        <div class="flex gap-2">
+        <input
+        type="checkbox"
+        class="toggle-btn"
+        data-id="${mission.id}"
+        ${mission.completed ? "checked" : ""}>
         <span>${mission.title}</span>
+        </div>
         <button
         class="delete-btn"
         data-id="${mission.id}">X</button>`;
@@ -51,3 +58,5 @@ export function deleteMission(id) {
     saveData("missions", filtered);
     renderMissions();
 }
+
+//step 15 blm
