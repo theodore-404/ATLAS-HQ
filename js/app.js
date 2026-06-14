@@ -5,7 +5,11 @@ from "./mission.js";
 
 document
 .getElementById("addMission")
-.addEventListener("click", addMission);
+.addEventListener("click", () => {
+    addMission();
+    updateBriefing();
+}
+);
 
 renderMissions();
 document.addEventListener("click", (e) => {
@@ -20,7 +24,7 @@ updateBriefing();
 
 updateBriefing();
 
-function updateBriefing() {
+export function updateBriefing() {
     const missions =
     JSON.parse(localStorage.getItem("missions")) || [];
     document.getElementById("briefing").innerHTML = `
