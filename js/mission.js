@@ -6,7 +6,7 @@ from "./storage.js";
 
 export function renderMissions() {
     const missions =
-    getData("missions");
+    getData("missions") || [];
     const missionList =
     document.getElementById("missionList");
     missionList.innerHTML = "";
@@ -38,7 +38,7 @@ export function addMission() {
     input.value.trim();
     if (!title) return;
     const missions =
-    getData("missions");
+    getData("missions") || [];
     missions.push({
         id: Date.now(),
         title: title,
@@ -52,11 +52,21 @@ export function addMission() {
 
 export function deleteMission(id) {
     const missions =
-    getData("missions");
+    getData("missions") || [];
     const filtered =
     missions.filter(mission => mission.id != id);
     saveData("missions", filtered);
     renderMissions();
 }
 
-//step 15 blm
+export function toggleMission(id) {
+    const missions =
+    getData("missions") || [];
+    const mission =
+    missions.find(m => m.id == id);
+    if (!mission) return;
+    mission.completed =
+    !mission.completed;
+    saveData("missions", missions);
+    renderMissions();
+}
