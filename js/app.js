@@ -33,12 +33,24 @@ import {
 }
 from "./navigation.js";
 
+import {
+    updateHeader, startUptime
+}
+from "./header.js";
+
+import {
+    updateDashboard
+}
+from "./dashboard.js";
+
 document
 .getElementById("addMission")
 .addEventListener("click", () => {
     const title =
     document.getElementById("missionInput").value;
     addMission();
+    updateHeader();
+    updateDashboard();
     addSystemLog("MISSION ADDED");
     renderProgress();
     addHistory(`Mission Added: ${title}`);
@@ -51,6 +63,8 @@ document
 .getElementById("saveResources")
 .addEventListener("click", () => {
     saveResources();
+    updateHeader();
+    updateDashboard();
     addSystemLog("RESOURCE STATUS UPDATED");
     updateBriefing();
     addHistory("Resources Updated");
@@ -62,6 +76,10 @@ renderHistory();
 renderProgress();
 renderIntel();
 renderSystemLog();
+
+updateHeader();
+updateDashboard();
+startUptime();
 
 addSystemLog("SYSTEM ONLINE");
 addSystemLog("DATABASES LOADED");
@@ -78,6 +96,8 @@ document.addEventListener("click", (e) => {
 const id =
 e.target.dataset.id;
 deleteMission(id);
+updateHeader();
+updateDashboard();
 addSystemLog("MISSION DELETED");
 renderProgress();
 addHistory("Mission Deleted");
@@ -89,6 +109,8 @@ updateThreats();
 document.addEventListener("change", (e) => {
     if (e.target.classList.contains("toggle-btn")) {
         toggleMission(e.target.dataset.id);
+        updateHeader();
+        updateDashboard();
         addSystemLog("MISSION STATUS UPDATED");
         renderProgress();
         updateThreats();
