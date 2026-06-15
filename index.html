@@ -26,9 +26,55 @@
          </div>
          <!-- MAIN CONTENT -->
           <div class="flex-1 p-6">
+            <div
+            id="commandHeader"
+            class="border border-green-500 p-4 mb-6">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">ATLAS HQ</h1>
+                <p class="text-green-400">Personal Tactical Operating System</p>
+            </div>
+            <div class="text-right">
+                <div id="headerStatus">STATUS : ONLINE</div>
+                <div id="headerThreat">THREAT : LOW</div>
+                <div id="headerFocus">FOCUS : 0%</div>
+                <div id="headerUptime">UPTIME : 00:00:00</div>
+            </div>
+        </div>
+        </div></div>
+
         <h1 class="text-4x1 font-bold">ATLAS HQ</h1>
         <p class="text-green-400 mb-8">Personal Tactical Operating System</p>
         <div id="dashboardPage">
+            <div
+            id="dashboardStats"
+            class="grid grid-cols-2 gap-4 mb-6">
+            <div class="border border-cyan-500 p-4">
+                <div class="text-sm">ACTIVE MISSIONS</div>
+                <div
+                id="activeMissionCount"
+                class="text-2xl font-bold">0</div>
+        </div>
+        <div class="border border-cyan-500 p-4">
+            <div class="text-sm">MONEY</div>
+            <div
+            id="moneyStatus"
+            class="text-2xl font-bold">0</div>
+        </div>
+    <div class="border border-cyan-500 p-4">
+        <div class="text-sm">FOCUS</div>
+        <div
+        id="focusStatus"
+        class="text-2xl font-bold">0%</div>
+    </div>
+    <div class="border border-cyan-500 p-4">
+        <div class="text-sm">THREAT LEVEL</div>
+        <div
+        id="threatStatus"
+        class="text-2xl font-bold">LOW</div>
+    </div>
+    </div>
+
         <div
         id="briefing"
         class="border border-green-500 p-4 mb-6">Loading...</div>
