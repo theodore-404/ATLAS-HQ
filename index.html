@@ -11,18 +11,57 @@
 
 <body class="bg-black text-green-500 font-mono">
 
-    <div class="max-w-5x1 mx-auto p-6">
+    <div class="flex min-h-screen">
+        <!-- SIDEBAR -->
+        <div class="w-64 border-r border-green-500 p-4">
+            <h1 class="text-2x1 font-bold mb-6">ATLAS HQ</h1>
+            <div class="space-y-2">
+                <button class="nav-btn block w-full text-left" data-page="dashboard">Dashboard</button>
+                <button class="nav-btn block w-full text-left" data-page="missions">Missions</button>
+                <button class="nav-btn block w-full text-left" data-page="resources">Resources</button>
+                <button class="nav-btn block w-full text-left" data-page="intel">Intelligence</button>
+                <button class="nav-btn block w-full text-left" data-page="history">History</button>
+                <button class="nav-btn block w-full text-left" data-page="logs">System Log</button>
+            </div>
+         </div>
+         <!-- MAIN CONTENT -->
+          <div class="flex-1 p-6">
         <h1 class="text-4x1 font-bold">ATLAS HQ</h1>
         <p class="text-green-400 mb-8">Personal Tactical Operating System</p>
+        <div id="dashboardPage">
         <div
         id="briefing"
         class="border border-green-500 p-4 mb-6">Loading...</div>
         <div
+        id="missionProgress"
+        class="border border-cyan-500 p-4 mb-6">Loading Progress...</div>
+        <div
         id="threats"
         class="border border-yellow-500 text-yellow-400 p-4 mb-6">No threats detected</div>
-        <div class="border border-cyan-500 p-4 mb-6">
+        </div>
+        </div>
+    
+        <div
+        id="missionsPage"
+        class="border border-green-500 p-4">
+    <h2 class="text-xl mb-4">MISSION CONTROL</h2>
+<input
+id="missionInput"
+type="text"
+placeholder="New Mission"
+class="w-full bg-black border border-green-500 p-2">
+<button
+id="addMission"
+class="mt-3 border border-green-500 px-4 py-2">ADD MISSION</button>
+<ul
+id="missionList"
+class="mt-4 space-y-2"></ul>
+</div>
+<div
+    id="resourcesPage"
+    class="border border-cyan-500 p-4 mb-6">
     <h2 class="mb-4">RESOURCE MANAGEMENT</h2>
-<div class="grid md:grid-cols-2 gap-3">
+    <div class="grid md:grid-cols-2 gap-3">
     <input
     id="moneyInput"
     type="number"
@@ -51,25 +90,49 @@
     id="resourceDisplay"
     class="mt-4"></div>
     </div>
-        <div
-        class="border border-green-500 p-4">
-    <h2 class="text-xl mb-4">MISSION CONTROL</h2>
-<input
-id="missionInput"
-type="text"
-placeholder="New Mission"
-class="w-full bg-black border border-green-500 p-2">
-<button
-id="addMission"
-class="mt-3 border border-green-500 px-4 py-2">ADD MISSION</button>
-<ul
-id="missionList"
-class="mt-4 space-y-2"></ul>
+
+<div
+id="intelPage"
+class="border border-blue-500 p-4 mt-6">
+    <h2 class="mb-4">INTELLIGENCE LOG</h2>
+    <input
+    id="intelTitle"
+    type="text"
+    placeholder="Title"
+    class="w-full bg-black border border-blue-500 p-2 mb-3">
+    <textarea
+    id="intelContent"
+    placeholder="Intel..."
+    class="w-full bg-black border border-blue-500 p-2 mb-3 h-32"></textarea>
+    <button
+    id="saveIntel"
+    class="border border-blue-500 px-4 py-2">SAVE INTEL</button>
+    <div
+    id="intelList"
+    class="mt-4 space-y-3"></div>
 </div>
+
+    <div
+    id="historyPage"
+    class="border border-green-500 p-4 mt-6">
+<h2 class="mb-4">OPERATION HISTORY</h2>
+<ul
+id="historyList"
+class="space-y-2"></ul>
+</div>
+
+<div
+    id="logsPage"
+    class="border border-green-500 p-4 mb-6">
+    <h2 class="mb-3">SYSTEM LOG</h2>
+    <div
+    id="systemLog"
+    class="text-green-400 text-sm space-y-1"></div>
     </div>
 
     <script
     type="module"
     src="./js/app.js"></script>
+    </div>
 </body>
 </html>
