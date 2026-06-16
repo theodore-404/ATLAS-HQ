@@ -48,6 +48,11 @@ import {
 }
 from "./finance.js";
 
+import {
+    renderExpenseChart
+}
+from "./chart.js";
+
 document
 .getElementById("addMission")
 .addEventListener("click", () => {
@@ -61,8 +66,7 @@ document
     addHistory(`Mission Added: ${title}`);
     updateBriefing();
     updateThreats();
-}
-);
+});
 
 document
 .getElementById("saveResources")
@@ -99,17 +103,17 @@ document.getElementById("saveIntel").addEventListener("click", () => {
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-btn")
     ) {
-const id =
-e.target.dataset.id;
-deleteMission(id);
-updateHeader();
-updateDashboard();
-addSystemLog("MISSION DELETED");
-renderProgress();
-addHistory("Mission Deleted");
-updateBriefing();
-updateThreats();
-}
+        const id =
+        e.target.dataset.id;
+        deleteMission(id);
+        updateHeader();
+        updateDashboard();
+        addSystemLog("MISSION DELETED");
+        renderProgress();
+        addHistory("Mission Deleted");
+        updateBriefing();
+        updateThreats();
+    }
 });
 
 document.addEventListener("change", (e) => {
@@ -126,6 +130,7 @@ document.addEventListener("change", (e) => {
 
 document.getElementById("addFinance").addEventListener("click", () => {
     addFinance();
+    refreshFinanceSystem();
 });
 
 updateBriefing();
@@ -142,19 +147,16 @@ export function updateBriefing() {
     "UNKNOWN";
     if (Number(resources.money) >= 500000) {
         moneyStatus = "STABLE"; }
-        else {
-            moneyStatus = "LOW";
-    }
+    else {
+        moneyStatus = "LOW"; }
     let threatLevel = "LOW";
     let threatColor = "lime";
     if (activeMissions.length >= 5) {
         threatLevel = "MEDIUM";
-        threatColor = "yellow";
-    }
+        threatColor = "yellow"; }
     if (activeMissions.length >= 8) {
         threatLevel = "HIGH";
-        threatColor = "red";
-    }
+        threatColor = "red"; }
     document.getElementById("briefing").innerHTML = `
     GOOD EVENING, WYNN
     <br><br>
@@ -179,12 +181,19 @@ function updateThreats() {
         threats.innerHTML = `
         ⚠ HIGH WORKLOAD DETECTED
         <br><br>
-        Active Missions : ${activeMissions.length}`;
-    }
+        Active Missions : ${activeMissions.length}`; }
     else {
         threats.innerHTML =
-        "No threats detected";
-    }
+        "No threats detected"; }
+}
+
+export function refreshFinanceSystem() {
+    const finances = JSON.parse(localStorage.getItem("finances")) || [];
+
+    renderFinances();
+    renderExpenseChart(finances);
+    updateDashboard();
+    updateHeader();
 }
 
 document.querySelectorAll(".nav-btn").forEach(button => {
