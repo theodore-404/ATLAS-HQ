@@ -17,7 +17,7 @@ export function saveResources() {
 export function renderResources() {
     const resources = getData("resources");
     const display = document.getElementById("resourceDisplay");
-    if (!resources.money) {
+    if (!resources) {
         display.innerHTML =
         "No resource data";
         return;
