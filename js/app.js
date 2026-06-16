@@ -43,6 +43,11 @@ import {
 }
 from "./dashboard.js";
 
+import {
+    addFinance, renderFinances, deleteFinance
+}
+from "./finance.js";
+
 document
 .getElementById("addMission")
 .addEventListener("click", () => {
@@ -76,6 +81,7 @@ renderHistory();
 renderProgress();
 renderIntel();
 renderSystemLog();
+renderFinances();
 
 updateHeader();
 updateDashboard();
@@ -116,6 +122,10 @@ document.addEventListener("change", (e) => {
         updateThreats();
         updateBriefing();
     }
+});
+
+document.getElementById("addFinance").addEventListener("click", () => {
+    addFinance();
 });
 
 updateBriefing();
@@ -186,7 +196,8 @@ document.querySelectorAll(".nav-btn").forEach(button => {
             resources: "resourcesPage",
             intel: "intelPage",
             history: "historyPage",
-            logs: "logsPage"
+            logs: "logsPage",
+            finance: "financePage"
         };
         showPage(map[page]);
     });
