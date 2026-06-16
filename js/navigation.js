@@ -5,7 +5,8 @@ export function showPage(pageId) {
         "resourcesPage",
         "intelPage",
         "historyPage",
-        "logsPage"
+        "logsPage",
+        "financePage"
     ];
     pages.forEach(page => {
         const element =
