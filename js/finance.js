@@ -13,17 +13,37 @@ import {
 }
 from "./chart.js";
 
+import {
+    refreshFinanceSystem
+}
+from "./app.js";
+
 export function addFinance() {
     const description = document.getElementById("financeDescription").value;
     const amount = Number(document.getElementById("financeAmount").value);
     const type = document.getElementById("financeType").value;
+    const category = document.getElementById("financeCategory");
     const finances = getData("finances") || [];
     finances.push({
-        id: Date.now(), description, amount, type
+        id: Date.now(), description, amount, type, category
     });
     saveData("finances", finances);
     renderFinances();
+    refreshFinanceSystem();
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const financeType = document.getElementById("financeType");
+    const categorySelect = document.getElementById("financeCategory");
+
+    financeType.addEventListener("change", () => {
+        if (financeType.value === "income") {
+            categorySelect.disabled = true;
+            categorySelect.value = "Other";
+        } else {
+            categorySelect.disabled = false;
+        }
+    });
+});
 
 export function renderFinances() {
     const finances = getData("finances") || [];
@@ -76,4 +96,5 @@ export function deleteFinance(id) {
     const updated = finances.filter(item => item.id !== id);
     saveData("finances", updated);
     renderFinances();
+    refreshFinanceSystem();
 }
