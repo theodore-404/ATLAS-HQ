@@ -213,3 +213,20 @@ document.querySelectorAll(".nav-btn").forEach(button => {
 });
 
 showPage("dashboardPage");
+
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+menuToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("-translate-x-full");
+});
+
+document.addEventListener("click", (e) => {
+    const clickedSidebar = sidebar.contains(e.target);
+    const clickedButton = menuToggle.contains(e.target);
+    if (
+        !clickedSidebar &&
+        !clickedButton
+    ) {
+        sidebar.classList.add("-translate-x-full");
+    }
+});
